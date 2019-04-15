@@ -87,11 +87,28 @@ header nav ul a {
   margin-top: 25px;
 }
 
+.chapter-container h2 {
+  font-size: 18px;
+  position: absolute;
+  margin-top: 60px;
+  margin-left: 20px;
+}
+
 .chapter-container p, .event-container p {
   width: 300px;
+  text-align: justify;
 }
 
 footer {
   height: 200px;
   margin-top: 50px;
+}
+
+.shield {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  margin: 0 auto;
+  background-color: gray;
+  margin-top: 25px;
 }
