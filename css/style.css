@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header, footer {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin-top: 30px;
+}
+
+nav li {
+  margin-left: 25px;
+}
+
+header nav ul a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.header-container img {
+  height: 75px;
+  width: auto;
+  margin: 25px 0;
+}
+
+.hero-image {
+    height: 650px;
+    width: 100%; 
+    background-image: url(./../images/soccer-field.jpg);
+    background-position: center bottom;
+    background-size: cover;
+    background-position: center center;
+    /* margin-bottom: 45px; */
+}
+
+.hero-image_container {
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 400px;
+}
+
+.hero-image_container img {
+  position: absolute;
+}
+
+.hero-image img {
+  opacity: .7;
+}
+
+.content-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.content-container h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 50px;
+}
+
+.chapter-container, .event-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.chapter-container h2, .event-container h2 {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.chapter-container p, .event-container p {
+  width: 300px;
+}
+
+footer {
+  height: 200px;
+  margin-top: 50px;
+}
