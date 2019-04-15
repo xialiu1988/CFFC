@@ -114,5 +114,6 @@ footer {
 }
 
 .active {
-  text-decoration: underline;
+  border-bottom: white solid 2px;
+  padding-bottom: 10px;
 }
