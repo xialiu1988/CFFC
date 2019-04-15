@@ -80,7 +80,7 @@ Cart.prototype.addItem=function(product,quantity){
 //cart function--save to localstorage
 Cart.prototype.savetoLocalstorage=function(){
   var cartInfo=JSON.stringify(this.cartItems);
-  localStorage.setItem('cartData',cartInfo);
+  localStorage.setItem('productData',cartInfo);
 };
 
 
