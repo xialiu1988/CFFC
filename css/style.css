@@ -112,3 +112,7 @@ footer {
   background-color: gray;
   margin-top: 25px;
 }
+
+.active {
+  text-decoration: underline;
+}
