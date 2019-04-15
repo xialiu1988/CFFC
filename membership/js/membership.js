@@ -78,33 +78,22 @@ function displayTier(){
 
 function handleGoldDOM(){
   allTierCart.push(allTier[0]);
-  updateMembershipCounter();
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
+  checklocal();
 }
 
 function handleSilverDOM(){
   allTierCart.push(allTier[1]);
-  updateMembershipCounter();
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
+  checklocal();
 }
 function handleBronzeDOM(){
   allTierCart.push(allTier[2]);
-  updateMembershipCounter();
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
+  checklocal();
 }
 
 
-
-//update shopping cart
-function updateMembershipCounter(){
-  var mainEl=document.getElementById('membershipCounter');
-  mainEl.innerHTML='';
-  var totalNum=allTierCart.length;
-  var pEl=document.createElement('p');
-  pEl.textContent=totalNum+total;
-  mainEl.appendChild(pEl);
-
-}
 
 generateTier();
 displayTier();
