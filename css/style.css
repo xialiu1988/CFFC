@@ -112,3 +112,8 @@ footer {
   background-color: gray;
   margin-top: 25px;
 }
+
+.active {
+  border-bottom: white solid 2px;
+  padding-bottom: 10px;
+}
