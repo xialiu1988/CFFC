@@ -1,9 +1,14 @@
 //the unknown labels are for ids that i dont know what the exact names are gonna be yet
 
-var selectPlatinumDOM = document.getElementById('unknown');
-var selectGoldDOM = document.getElementById('unknown');
-var selectSilverDOM = document.getElementById('unknown');
-var allTier = [];
+var membershipLevelGold = document.getElementById('membershipLevelGold');
+var membershipLevelSilver = document.getElementById('membershipLevelSilver');
+var membershipLevelBronze = document.getElementById('membershipLevelBronze');
+var membershipLevel = [membershipLevelGold, membershipLevelSilver, membershipLevelBronze];
+
+var allTierCart =[]; //the array to handle the amount of membership a user puts in thier cart
+
+var allTier = []; //the array to handle the default amount of membership options
+
 
 var Tier = function(name, price, filepath){
   this.name = name;
@@ -13,36 +18,52 @@ var Tier = function(name, price, filepath){
   allTier.push(this);
 };
 
-function saveToLocalStorage (Tier){
-  localStorage.setItem('cartData', JSON.stringify(Tier));
+function saveToLocalStorage (){
+  var oldCartData = JSON.parse(localStorage.getItem('cartData')) || [];
+  oldCartData.push(allTierCart[allTierCart.length-1]);
+  var stringifyCartData = JSON.stringify(oldCartData);
+  localStorage.setItem('cartData', stringifyCartData);
 }
 
 function generateTier(){
-  new Tier('Platinum', 55, 'img/platinum.jpg');
-  new Tier('Gold', 40, 'img/gold.jpg');
-  new Tier('Silver', 25, 'img/silver.jpg');
+  new Tier('Gold', 55, 'img/gold.png');
+  new Tier('Silver', 40, 'img/silver.png');
+  new Tier('Bronze', 25, 'img/bronze.png');
 }
 
 function displayTier(){
-  var membershipDivDOM = document.getElementById('membership-level');
   for(var i =0; i < allTier.length; i++){
-    var platinumNameDOM = document.createElement('h1');
-    platinumNameDOM.textContent = allTier[0].name;
-
+    var placeholderNameDOM = document.createElement('h1');
+    var placeholderImageDOM = document.createElement('img');
+    var placeholderPriceDOM = document.createElement('p');
+    var placeholderButtonDOM = document.createElement('button');
+    placeholderNameDOM.textContent = allTier[i].name;
+    membershipLevel[i].appendChild(placeholderNameDOM);
+    placeholderImageDOM.src = allTier[i].filepath;
+    membershipLevel[i].appendChild(placeholderImageDOM);
+    placeholderPriceDOM.textContent = '$' + allTier[i].price;
+    membershipLevel[i].appendChild(placeholderPriceDOM);
+    placeholderButtonDOM.innerHTML = 'ADD TO CART';
+    membershipLevel[i].appendChild(placeholderButtonDOM);
   }
 }
 
-function handlePlatinumDOM(){
-  saveToLocalStorage(allTier[0]);
-}
 function handleGoldDOM(){
-  saveToLocalStorage(allTier[1]);
-}
-function handleSilverDOM(){
-  saveToLocalStorage(allTier[2]);
+  allTierCart.push(allTier[0]);
+  saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
 }
 
-selectPlatinumDOM.addEventListener('submit', handlePlatinumDOM);
-selectGoldDOM.addEventListener('submit', handleGoldDOM);
-selectSilverDOM.addEventListener('submit', handleSilverDOM);
+function handleSilverDOM(){
+  allTierCart.push(allTier[1]);
+  saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
+}
+function handleBronzeDOM(){
+  allTierCart.push(allTier[2]);
+  saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
+}
+generateTier();
+displayTier();
+membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
+membershipLevel[1].lastChild.addEventListener('click', handleSilverDOM);// for the silver button event listener
+membershipLevel[2].lastChild.addEventListener('click', handleBronzeDOM); // for the bronze button event listener
 
