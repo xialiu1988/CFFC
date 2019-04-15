@@ -47,11 +47,11 @@ This page should just be an informational page that displays a hero image under 
 ### Join
 This age where is member can select a membership level to add to their cart. This should have three membership levels:
 - Platinum
- * $50
+  * $50
 - Gold
- * $40
+  * $40
 - Silver
- * $30
+  * $30
 
 When a membership is added to the cart it should add the cart number that is a visual cue across all pages.
 
