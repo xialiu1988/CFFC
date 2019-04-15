@@ -121,7 +121,7 @@ function updateCartCounter(){
 
 function createInstances(){
   new Product('bag','../images/bag.jpg','$13.56');
-  new Product('cffc tshirt','../images/cffc tshirt.png','$39.50');
+  new Product('cffc tshirt','../images/cffcTshirt.png','$39.50');
   new Product('cup','../images/cup.jpg','$21.00');
   new Product('hoodie','../images/hoodie.png','$63.90');
   new Product('soccer_boot','../images/soccer_boot.jpg','$83.00');
