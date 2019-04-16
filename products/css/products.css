@@ -23,7 +23,10 @@
 
 #product-container p {
   margin-bottom: 25px;
+  font-weight: bolder;
 }
+
+
 
 #counter{
   color:wheat;

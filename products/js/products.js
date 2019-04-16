@@ -38,7 +38,7 @@ function render(){
     input.value='1';
     let buttonEl=document.createElement('button');
     buttonEl.type='submit';
-    buttonEl.textContent='AddtoCart';
+    buttonEl.textContent='Add To Cart';
     buttonEl.id=products[i].name;
     buttonEl.addEventListener('click',addtoCart);
     formEl.appendChild(labelEl);
