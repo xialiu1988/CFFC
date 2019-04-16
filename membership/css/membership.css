@@ -1,3 +1,33 @@
 img{
   width: 30%;
 }
+
+#membershipLevelGold, #membershipLevelSilver, #membershipLevelBronze{
+  width: 30%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+ #membershipPerksGold{
+  margin-top: 0;
+  margin-left:-40px;
+  text-align: center;
+}
+
+#membershipPerksSilver{
+  margin-top: 0;
+  margin-left:150px;
+  text-align: center;
+}
+
+#membershipPerksBronze{
+  margin-top: 0;
+  margin-left:150px;
+  text-align: center;
+}
+
+#membershipPerks{
+  display: inline-flex;
+}
+
+
