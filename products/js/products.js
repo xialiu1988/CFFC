@@ -32,7 +32,7 @@ function render(){
     labelEl.textContent='Qty: ';
     let input=document.createElement('input');
     input.min='1';
-    input.type='numbner';
+    input.type='number';
     input.name='quantity';
     input.id='quantity'+products[i].name;
     input.value='1';
@@ -45,8 +45,8 @@ function render(){
     formEl.appendChild(input);
     formEl.appendChild(buttonEl);
     divEl.appendChild(imgEl);
-    divEl.appendChild(formEl);
     divEl.appendChild(pEl);
+    divEl.appendChild(formEl);
   }
 }
 //cart constructor
