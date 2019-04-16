@@ -2,6 +2,7 @@ img{
   width: 30%;
 }
 
+
 #membershipLevelGold, #membershipLevelSilver, #membershipLevelBronze{
   width: 30%;
   display: inline-block;
@@ -30,4 +31,6 @@ img{
   display: inline-flex;
 }
 
-
+#membershipCounter{
+  color:white;
+}

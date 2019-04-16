@@ -14,7 +14,7 @@ We are developing this site to allow for easy membership sign-up, and for suppor
 
 
 
-##References:
+## References:
 The following are the refernces that were used for downloading and customizing images:
 The following are the image references:
 1.	Sports bag: https://www.maxpixel.net/Backpack-Blue-Black-White-Leisure-Sport-Red-1324445

@@ -1,6 +1,6 @@
 'use strict';
-var products=[];
-var cartItems=[];
+var products = [];
+var cartItems = [];
 
 //product constructor
 function Product(name,src,price){
@@ -9,40 +9,75 @@ function Product(name,src,price){
   this.price=price;
   products.push(this);
 }
+var total=0;
+function checklocal(){
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  if(rawData&&rawMember){
+    cartItems=rawData;
+    for(var l=0;l<rawData.length;l++){
+      total+=Number(rawData[l].quantity);
+    }
+    var main=document.getElementById('counter');
+    main.innerHTML=total+Number(rawMember.length);
+  }
+  else if(rawData===null&&rawMember!==null){
+    var main2=document.getElementById('counter');
+    main2.innerHTML=Number(rawMember.length);
+  }
+  else if(rawData!==null&&rawMember===null){
+    cartItems=rawData;
+    var main3=document.getElementById('counter');
+    for(var ll=0;ll<rawData.length;ll++){
+      total+=Number(rawData[ll].quantity);
+    }
+    main3.innerHTML=total;
+  }
+  else{
+    var mainEl=document.getElementById('counter');
+    mainEl.innerHTML='';
+  }
+}
+checklocal();
 
 //display all the products on the products.html page
 function render(){
-  var mainEl=document.getElementById('main-container');
-  for(let i=0;i<products.length;i++){
-    var imgEl=document.createElement('img');
+  let mainEl = document.getElementById('product-container');
+  let divEl;
+  for (let i = 0; i < products.length; i++) {
+    divEl = document.createElement('div');
+    divEl.className = products[i].name;
+
+    mainEl.appendChild(divEl);
+
+    let imgEl=document.createElement('img');
     imgEl.name=products[i].name;
     imgEl.src=products[i].src;
 
-    var pEl=document.createElement('p');
+    let pEl=document.createElement('p');
     pEl.textContent=products[i].price;
 
-    var formEl=document.createElement('form');
-    var labelEl=document.createElement('label');
+    let formEl=document.createElement('form');
+    let labelEl=document.createElement('label');
     labelEl.textContent='Qty: ';
-    var input=document.createElement('input');
+    let input=document.createElement('input');
     input.min='1';
-    input.type='numbner';
+    input.type='number';
     input.name='quantity';
     input.id='quantity'+products[i].name;
     input.value='1';
-    var buttonEl=document.createElement('button');
+    let buttonEl=document.createElement('button');
     buttonEl.type='submit';
-    buttonEl.textContent='AddtoCart';
+    buttonEl.textContent='Add To Cart';
     buttonEl.id=products[i].name;
     buttonEl.addEventListener('click',addtoCart);
     formEl.appendChild(labelEl);
     formEl.appendChild(input);
     formEl.appendChild(buttonEl);
-    mainEl.appendChild(imgEl);
-    mainEl.appendChild(formEl);
-    mainEl.appendChild(pEl);
+    divEl.appendChild(imgEl);
+    divEl.appendChild(pEl);
+    divEl.appendChild(formEl);
   }
-
 }
 //cart constructor
 function Cart(cartItems){
@@ -80,7 +115,7 @@ Cart.prototype.addItem=function(product,quantity){
 //cart function--save to localstorage
 Cart.prototype.savetoLocalstorage=function(){
   var cartInfo=JSON.stringify(this.cartItems);
-  localStorage.setItem('cartData',cartInfo);
+  localStorage.setItem('productData',cartInfo);
 };
 
 
@@ -110,21 +145,29 @@ function updateCartCounter(){
   var divEl=document.getElementById('counter');
   //clear the div, then append the latest counter number in there
   divEl.innerHTML='';
-  var pEl=document.createElement('p');
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   var total=0;
-  for(var l=0;l<cartItems.length;l++){
-    total+=Number(cartItems[l].quantity);
+  if(rawData&&rawMember){
+    for(var l=0;l<rawData.length;l++){
+      total+=Number(rawData[l].quantity);
+    }
+    divEl.innerHTML=total+rawMember.length;
   }
-  pEl.innerHTML=total;
-  divEl.appendChild(pEl);
+  else{
+    for(var li=0;li<rawData.length;li++){
+      total+=Number(rawData[li].quantity);
+    }
+    divEl.innerHTML=total;
+  }
 }
 
 function createInstances(){
   new Product('bag','../images/bag.jpg','$13.56');
-  new Product('cffc tshirt','../images/cffcTshirt.png','$39.50');
+  new Product('cffc-tshirt','../images/cffcTshirt.png','$39.50');
   new Product('cup','../images/cup.jpg','$21.00');
   new Product('hoodie','../images/hoodie.png','$63.90');
-  new Product('soccer_boot','../images/soccer_boot.jpg','$83.00');
+  new Product('soccer-boot','../images/soccer_boot.jpg','$83.00');
   new Product('sticker','../images/sticker.jpg','$4.00');
 }
 
