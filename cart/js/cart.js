@@ -30,6 +30,11 @@ function showCart(){
     var thEl=document.createElement('th');
     thEl.textContent=cart.cartItems[i].product.name;
     trEl.appendChild(thEl);
+    var imgtdEl=document.createElement('td');
+    var imgEl=document.createElement('img');
+    imgEl.src=cart.cartItems[i].product.src;
+    imgtdEl.appendChild(imgEl);
+    trEl.appendChild(imgtdEl);
     var tdEl=document.createElement('td');
     tdEl.textContent=cart.cartItems[i].quantity;
     trEl.appendChild(tdEl);
@@ -59,12 +64,18 @@ console.log(membership[4].name);
       bronzeCount++;
     }
   }
-  console.log(silverCount);
+
   if(goldCount>0){
     const trrEl=document.createElement('tr');
     var thhEl=document.createElement('th');
     thhEl.textContent='GoldMemberShip';
     trrEl.appendChild(thhEl);
+
+    let imgtdEl=document.createElement('td');
+    let imgEl=document.createElement('img');
+    imgEl.src='../membership/img/gold-member.png';
+    imgtdEl.appendChild(imgEl);
+    trrEl.appendChild(imgtdEl);
     var dEl=document.createElement('td');
     dEl.textContent=goldCount;
     trrEl.appendChild(dEl);
@@ -78,6 +89,12 @@ console.log(membership[4].name);
     let thhEl=document.createElement('th');
     thhEl.textContent='silverMemberShip';
     trrEl.appendChild(thhEl);
+
+    let imgtdEl=document.createElement('td');
+    let imgEl=document.createElement('img');
+    imgEl.src='../membership/img/silver-membership.png';
+    imgtdEl.appendChild(imgEl);
+    trrEl.appendChild(imgtdEl);
     let dEl=document.createElement('td');
     dEl.textContent=silverCount;
     trrEl.appendChild(dEl);
@@ -92,6 +109,13 @@ console.log(membership[4].name);
     let thhEl=document.createElement('th');
     thhEl.textContent='BronzeMemberShip';
     trrEl.appendChild(thhEl);
+
+    let imgtdEl=document.createElement('td');
+    let imgEl=document.createElement('img');
+    imgEl.src='../membership/img/bronze-member.png';
+    imgtdEl.appendChild(imgEl);
+    trrEl.appendChild(imgtdEl);
+
     let dEl=document.createElement('td');
     dEl.textContent=bronzeCount;
     trrEl.appendChild(dEl);
