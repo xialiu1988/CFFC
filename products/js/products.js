@@ -9,6 +9,36 @@ function Product(name,src,price){
   this.price=price;
   products.push(this);
 }
+var total=0;
+function checklocal(){
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  if(rawData&&rawMember){
+    cartItems=rawData;
+    for(var l=0;l<rawData.length;l++){
+      total+=Number(rawData[l].quantity);
+    }
+    var main=document.getElementById('counter');
+    main.innerHTML=total+Number(rawMember.length);
+  }
+  else if(rawData===null&&rawMember!==null){
+    var main2=document.getElementById('counter');
+    main2.innerHTML=Number(rawMember.length);
+  }
+  else if(rawData!==null&&rawMember===null){
+    cartItems=rawData;
+    var main3=document.getElementById('counter');
+    for(var ll=0;ll<rawData.length;ll++){
+      total+=Number(rawData[ll].quantity);
+    }
+    main3.innerHTML=total;
+  }
+  else{
+    var mainEl=document.getElementById('counter');
+    mainEl.innerHTML='';
+  }
+}
+checklocal();
 
 //display all the products on the products.html page
 function render(){
@@ -110,13 +140,21 @@ function updateCartCounter(){
   var divEl=document.getElementById('counter');
   //clear the div, then append the latest counter number in there
   divEl.innerHTML='';
-  //var pEl=document.createElement('p');
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   var total=0;
-  for(var l=0;l<cartItems.length;l++){
-    total+=Number(cartItems[l].quantity);
+  if(rawData&&rawMember){
+    for(var l=0;l<rawData.length;l++){
+      total+=Number(rawData[l].quantity);
+    }
+    divEl.innerHTML=total+rawMember.length;
   }
-  divEl.innerHTML=total;
-  //divEl.appendChild(pEl);
+  else{
+    for(var li=0;li<rawData.length;li++){
+      total+=Number(rawData[li].quantity);
+    }
+    divEl.innerHTML=total;
+  }
 }
 
 function createInstances(){
