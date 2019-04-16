@@ -1,20 +1,25 @@
-img{
-  width: 200px;
-  height: auto;
-}
-
 .membership-levels {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
 
+.membership-levels h2 {
+  text-align: center;
+}
+
+.membership-levels h3 {
+  text-align: center;
+}
+
 /*https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css*/
 .membership-levels img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  float: left;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,3 +29,16 @@ img{
   padding: 10px;
 }
 
+.membership-levels p {
+  text-align: center;
+}
+
+.membership-levels button {
+  margin-left: 100px;
+}
+
+
+
+#membershipLevelGold, #membershipLevelSilver, #membershipLevelBronze {
+  width: 325px;
+}
