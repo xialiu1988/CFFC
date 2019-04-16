@@ -39,6 +39,7 @@ function generateTier(){
 //get data from localstorage
 var total=0;
 function checklocal(){
+  console.log('i got in here');
   var rawData=JSON.parse(localStorage.getItem('productData'));
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   if(rawData&&rawMember){
@@ -80,6 +81,7 @@ function displayTier(){
     placeholderPriceDOM.textContent = '$' + allTier[i].price;
     membershipLevel[i].appendChild(placeholderPriceDOM);
     placeholderButtonDOM.innerHTML = 'ADD TO CART';
+    placeholderButtonDOM.id = 'button'+i;
     membershipLevel[i].appendChild(placeholderButtonDOM);
     placeholderHeaderDOM.innerHTML = 'Perks:';
     membershipLevel[i].appendChild(placeholderHeaderDOM);
@@ -161,11 +163,16 @@ function handleBronzeDOM(){
 
 
 
+document.getElementById('button0').addEventListener('click', handleGoldDOM); // for the gold button event listener
+document.getElementById('button1').addEventListener('click', handleSilverDOM); // for the silver button event listener
+document.getElementById('button2').addEventListener('click', handleBronzeDOM); // for the bronze button event listener
 
+
+/*
 membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
 membershipLevel[1].lastChild.addEventListener('click', handleSilverDOM);// for the silver button event listener
 membershipLevel[2].lastChild.addEventListener('click', handleBronzeDOM); // for the bronze button event listener
-
+*/
 
 
 
