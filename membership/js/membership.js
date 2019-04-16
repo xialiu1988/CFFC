@@ -27,9 +27,9 @@ function saveToLocalStorage (){
 }
 
 function generateTier(){
-  new Tier('Gold', 55, 'img/gold.png');
-  new Tier('Silver', 40, 'img/silver.png');
-  new Tier('Bronze', 25, 'img/bronze.png');
+  new Tier('Gold', 55, 'img/gold-member.png');
+  new Tier('Silver', 40, 'img/silver-membership.png');
+  new Tier('Bronze', 25, 'img/bronze-member.png');
 }
 //get data from localstorage
 var total=0;
