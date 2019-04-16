@@ -3,7 +3,13 @@
 var membershipLevelGold = document.getElementById('membershipLevelGold');
 var membershipLevelSilver = document.getElementById('membershipLevelSilver');
 var membershipLevelBronze = document.getElementById('membershipLevelBronze');
+
 var membershipLevel = [membershipLevelGold, membershipLevelSilver, membershipLevelBronze];
+
+var perkListGold = ['Free renewal for one year', 'No cover charge at our partner venues', '15% off any merchandise', 'Something'];
+var perkListSilver = ['Only $25 for first renewal', '$5 cover charge at our partner venues', '10% off any merchandise', 'Something'];
+var perkListBronze = ['Only $25 for first renewal', '$10 cover charge at our partner venues', '5% off any merchandise', 'Something'];
+var perkList=[perkListGold, perkListSilver, perkListBronze];
 
 var allTierCart =[]; //the array to handle the amount of membership a user puts in thier cart
 
@@ -18,18 +24,18 @@ var Tier = function(name, price, filepath){
   allTier.push(this);
 };
 
+
 function saveToLocalStorage (){
   var oldCartData = JSON.parse(localStorage.getItem('membershipData')) || [];
   oldCartData.push(allTierCart[allTierCart.length-1]);
   var stringifyCartData = JSON.stringify(oldCartData);
   localStorage.setItem('membershipData', stringifyCartData);
-
 }
 
 function generateTier(){
-  new Tier('Gold', 55, 'img/gold.png');
-  new Tier('Silver', 40, 'img/silver.png');
-  new Tier('Bronze', 25, 'img/bronze.png');
+  new Tier('Gold', 55, 'img/gold-member.png');
+  new Tier('Silver', 40, 'img/silver-membership.png');
+  new Tier('Bronze', 25, 'img/bronze-member.png');
 }
 //get data from localstorage
 var total=0;
@@ -62,10 +68,12 @@ function checklocal(){
 checklocal();
 function displayTier(){
   for(var i =0; i < allTier.length; i++){
-    var placeholderNameDOM = document.createElement('h1');
+    var placeholderNameDOM = document.createElement('h2');
     var placeholderImageDOM = document.createElement('img');
     var placeholderPriceDOM = document.createElement('p');
     var placeholderButtonDOM = document.createElement('button');
+    var placeholderHeaderDOM = document.createElement('h3');
+    var placeholderListDom = document.createElement('ul');
     placeholderNameDOM.textContent = allTier[i].name;
     membershipLevel[i].appendChild(placeholderNameDOM);
     placeholderImageDOM.src = allTier[i].filepath;
@@ -74,6 +82,14 @@ function displayTier(){
     membershipLevel[i].appendChild(placeholderPriceDOM);
     placeholderButtonDOM.innerHTML = 'ADD TO CART';
     membershipLevel[i].appendChild(placeholderButtonDOM);
+    placeholderHeaderDOM.innerHTML = 'Perks:';
+    membershipLevel[i].appendChild(placeholderHeaderDOM);
+    for (var j = 0;j < perkListGold.length; j++) {
+      var listDomItems = document.createElement('li');
+      listDomItems.textContent = perkList[i][j];
+      placeholderListDom.appendChild(listDomItems);
+      membershipLevel[i].appendChild(placeholderListDom);
+    }
   }
 }
 generateTier();
