@@ -85,7 +85,7 @@ Cart.prototype.addItem=function(product,quantity){
 //cart function--save to localstorage
 Cart.prototype.savetoLocalstorage=function(){
   var cartInfo=JSON.stringify(this.cartItems);
-  localStorage.setItem('cartData',cartInfo);
+  localStorage.setItem('productData',cartInfo);
 };
 
 
@@ -115,13 +115,13 @@ function updateCartCounter(){
   var divEl=document.getElementById('counter');
   //clear the div, then append the latest counter number in there
   divEl.innerHTML='';
-  var pEl=document.createElement('p');
+  //var pEl=document.createElement('p');
   var total=0;
   for(var l=0;l<cartItems.length;l++){
     total+=Number(cartItems[l].quantity);
   }
-  pEl.innerHTML=total;
-  divEl.appendChild(pEl);
+  divEl.innerHTML=total;
+  //divEl.appendChild(pEl);
 }
 
 function createInstances(){
