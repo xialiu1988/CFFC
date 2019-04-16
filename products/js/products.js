@@ -19,7 +19,7 @@ function checklocal(){
       total+=Number(rawData[l].quantity);
     }
     var main=document.getElementById('counter');
-    main.innerHTML=total+Number(rawMember.length);
+    main.textContent=total+Number(rawMember.length);
   }
   else if(rawData===null&&rawMember!==null){
     var main2=document.getElementById('counter');
