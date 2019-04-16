@@ -1,3 +1,8 @@
+#product-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 #counter{
     color:wheat;
 }
