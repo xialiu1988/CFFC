@@ -13,18 +13,22 @@ function getLocalStorageData(){
 }
 
 function updateChartArrays(membershipData, productData){
-  for(var i=0; i<membershipData.length; i++){
-    membershipQuantity[membershipName.indexOf(membershipData[i].name)]++;
+  if(membershipData !== null){
+    for(var i=0; i<membershipData.length; i++){
+      membershipQuantity[membershipName.indexOf(membershipData[i].name)]++;
+    }
+    counter = membershipData.length;
+    drawMembershipChart();
   }
-  counter = membershipData.length;
-  for(var j=0; j<productData.length; j++){
-    productName[j] = productData[j].product.name;
-    productQuantity[j] = productData[j].quantity;
-    counter += Number(productData[j].quantity);
+  if(productData !== null){
+    for(var j=0; j<productData.length; j++){
+      productName[j] = productData[j].product.name;
+      productQuantity[j] = productData[j].quantity;
+      counter += Number(productData[j].quantity);
+    }
+    drawProductChart();
   }
   counterDOM.innerHTML = counter;
-  drawMembershipChart();
-  drawProductChart();
 }
 function drawMembershipChart() {  
   var canvas = document.getElementById('membership-chart');
