@@ -22,7 +22,7 @@ nav li {
   margin-left: 25px;
 }
 
-header nav ul a {
+a {
   text-decoration: none;
   color: white;
 }
@@ -174,4 +174,9 @@ button {
   border-radius: 5px;
   background-color: #d13327;
   color: #fff;
+}
+
+.navigation-button {
+  margin-top: 25px;
+  text-align: center;
 }
