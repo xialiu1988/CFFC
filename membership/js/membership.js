@@ -23,6 +23,7 @@ function saveToLocalStorage (){
   oldCartData.push(allTierCart[allTierCart.length-1]);
   var stringifyCartData = JSON.stringify(oldCartData);
   localStorage.setItem('membershipData', stringifyCartData);
+
 }
 
 function generateTier(){
@@ -75,30 +76,81 @@ function displayTier(){
     membershipLevel[i].appendChild(placeholderButtonDOM);
   }
 }
-
+generateTier();
+displayTier();
 function handleGoldDOM(){
   allTierCart.push(allTier[0]);
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
-  checklocal();
+  //var num1=allTierCart.length;
+  var num2=0;
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  if(rawData&&rawMember){
+    console.log(rawData.length);
+    for(var w=0;w<rawData.length;w++){
+      num2+=Number(rawData[w].quantity);
+      console.log(num2);
+    }
+    var main=document.getElementById('membershipCounter');
+    main.innerHTML='';
+    main.innerHTML=num2+rawMember.length;
+  
+  }
+  else{
+    var mainE=document.getElementById('membershipCounter');
+    mainE.innerHTML='';
+    mainE.innerHTML=rawMember.length;
+  }
 }
 
 function handleSilverDOM(){
   allTierCart.push(allTier[1]);
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
-  checklocal();
+  var num2=0;
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  if(rawData&&rawMember){
+    for(var w=0;w<rawData.length;w++){
+      num2+=Number(rawData[w].quantity);
+    }
+    var main=document.getElementById('membershipCounter');
+    main.innerHTML='';
+    main.innerHTML=num2+rawMember.length;
+  }
+  else{
+    var mainE=document.getElementById('membershipCounter');
+    mainE.innerHTML='';
+    mainE.innerHTML=rawMember.length;
+  }
 }
 function handleBronzeDOM(){
   allTierCart.push(allTier[2]);
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
-  checklocal();
+  //var num1=allTierCart.length;
+  var num2=0;
+  var rawData=JSON.parse(localStorage.getItem('productData'));
+  var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  if(rawData&&rawMember){
+    for(var w=0;w<rawData.length;w++){
+      num2+=Number(rawData[w].quantity);
+    }
+    var main=document.getElementById('membershipCounter');
+    main.innerHTML='';
+    main.innerHTML=num2+rawMember.length;
+  }
+  else{
+    var mainE=document.getElementById('membershipCounter');
+    mainE.innerHTML='';
+    mainE.innerHTML=rawMember.length;
+  }
 }
 
 
 
 
-generateTier();
-displayTier();
 membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
 membershipLevel[1].lastChild.addEventListener('click', handleSilverDOM);// for the silver button event listener
 membershipLevel[2].lastChild.addEventListener('click', handleBronzeDOM); // for the bronze button event listener
+
+
 
