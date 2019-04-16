@@ -95,6 +95,7 @@ function handleBronzeDOM(){
 
 
 
+
 generateTier();
 displayTier();
 membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
