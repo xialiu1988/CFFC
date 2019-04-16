@@ -69,6 +69,14 @@ a {
   position: absolute;
 }
 
+.hero-image_container h1 {
+  position: absolute;
+  font-size: 215px;
+  opacity: .7;
+  margin-left: 615px;
+  margin-top: -18px
+}
+
 .hero-image img {
   opacity: .7;
 }
