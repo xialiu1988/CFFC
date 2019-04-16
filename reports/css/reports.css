@@ -1,0 +1,18 @@
+.main-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#membership-chart {
+  margin-top: 50px;
+}
+
+#product-chart {
+  margin-top: 50px;
+}
+
+.main-container h1 {
+  margin-top: 50px;
+  text-align: center;
+  text-decoration: underline;
+}
