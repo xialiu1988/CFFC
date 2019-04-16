@@ -1,5 +1,4 @@
-//the unknown labels are for ids that i dont know what the exact names are gonna be yet
-
+'use strict';
 var membershipLevelGold = document.getElementById('membershipLevelGold');
 var membershipLevelSilver = document.getElementById('membershipLevelSilver');
 var membershipLevelBronze = document.getElementById('membershipLevelBronze');
@@ -110,7 +109,6 @@ function handleGoldDOM(){
     var main=document.getElementById('membershipCounter');
     main.innerHTML='';
     main.innerHTML=num2+rawMember.length;
-  
   }
   else{
     var mainE=document.getElementById('membershipCounter');
@@ -167,6 +165,7 @@ function handleBronzeDOM(){
 membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
 membershipLevel[1].lastChild.addEventListener('click', handleSilverDOM);// for the silver button event listener
 membershipLevel[2].lastChild.addEventListener('click', handleBronzeDOM); // for the bronze button event listener
+
 
 
 
