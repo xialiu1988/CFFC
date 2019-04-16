@@ -1,6 +1,6 @@
 'use strict';
-var products=[];
-var cartItems=[];
+var products = [];
+var cartItems = [];
 
 //product constructor
 function Product(name,src,price){
@@ -12,25 +12,31 @@ function Product(name,src,price){
 
 //display all the products on the products.html page
 function render(){
-  var mainEl=document.getElementById('main-container');
-  for(let i=0;i<products.length;i++){
-    var imgEl=document.createElement('img');
+  let mainEl = document.getElementById('product-container');
+  let divEl;
+  for (let i = 0; i < products.length; i++) {
+    divEl = document.createElement('div');
+    divEl.className = products[i].name;
+
+    mainEl.appendChild(divEl);
+
+    let imgEl=document.createElement('img');
     imgEl.name=products[i].name;
     imgEl.src=products[i].src;
 
-    var pEl=document.createElement('p');
+    let pEl=document.createElement('p');
     pEl.textContent=products[i].price;
 
-    var formEl=document.createElement('form');
-    var labelEl=document.createElement('label');
+    let formEl=document.createElement('form');
+    let labelEl=document.createElement('label');
     labelEl.textContent='Qty: ';
-    var input=document.createElement('input');
+    let input=document.createElement('input');
     input.min='1';
     input.type='numbner';
     input.name='quantity';
     input.id='quantity'+products[i].name;
     input.value='1';
-    var buttonEl=document.createElement('button');
+    let buttonEl=document.createElement('button');
     buttonEl.type='submit';
     buttonEl.textContent='AddtoCart';
     buttonEl.id=products[i].name;
@@ -38,11 +44,10 @@ function render(){
     formEl.appendChild(labelEl);
     formEl.appendChild(input);
     formEl.appendChild(buttonEl);
-    mainEl.appendChild(imgEl);
-    mainEl.appendChild(formEl);
-    mainEl.appendChild(pEl);
+    divEl.appendChild(imgEl);
+    divEl.appendChild(formEl);
+    divEl.appendChild(pEl);
   }
-
 }
 //cart constructor
 function Cart(cartItems){
@@ -121,10 +126,10 @@ function updateCartCounter(){
 
 function createInstances(){
   new Product('bag','../images/bag.jpg','$13.56');
-  new Product('cffc tshirt','../images/cffcTshirt.png','$39.50');
+  new Product('cffc-tshirt','../images/cffcTshirt.png','$39.50');
   new Product('cup','../images/cup.jpg','$21.00');
   new Product('hoodie','../images/hoodie.png','$63.90');
-  new Product('soccer_boot','../images/soccer_boot.jpg','$83.00');
+  new Product('soccer-boot','../images/soccer_boot.jpg','$83.00');
   new Product('sticker','../images/sticker.jpg','$4.00');
 }
 
