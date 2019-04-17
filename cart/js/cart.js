@@ -369,7 +369,7 @@ btnel.addEventListener('click',function(e){
     alert('Thanks for shopping with us!');
   }
   else{
-    localStorage.clear();
+    localStorage.reload();
   }
 
 });
