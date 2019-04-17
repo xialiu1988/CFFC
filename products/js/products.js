@@ -189,7 +189,6 @@ function checkStock(search){
     if(products[i].name.indexOf(search)>-1){
       boo=true;
     }
-    console.log(products[i].name);
   }
   return boo;
 }
@@ -249,8 +248,7 @@ function searchTheSite(e){
     }
   }
 
-  if (checkStock(dt) !== true){
-    console.log('im running');
+  if (!checkStock(dt)){
     var context = document.getElementById('product-container');
     context.innerHTML='';
     var paragraghEL=document.createElement('p');
