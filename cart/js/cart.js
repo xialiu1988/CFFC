@@ -7,16 +7,14 @@ var membership=[];
 function loadCart() {
   var rawData=JSON.parse(localStorage.getItem('productData'))|| [];
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
+  console.log(rawMember);
   console.log(Object.entries(rawData)[0][1]);
 
   for(let t=0;t<Object.values(rawData).length;t++){
     new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
-   }
+  }
   cart = new Cart(cartItems);
-
   membership=rawMember;
-  console.log(membership);
-
 }
 function renderCart(){
   loadCart();
@@ -28,9 +26,10 @@ function renderCart(){
 function clearCart(){
   //mainEl.innerHTML='';
 }
-
+var goldCount=0;
+var silverCount=0;
+var bronzeCount=0;
 function showCart(){
-
   //productData
   for(var i=0;i<cart.cartItems.length;i++){
     var trEl=document.createElement('tr');
@@ -72,10 +71,6 @@ function showCart(){
 
   //membershipData
 
-  let goldCount=0;
-  let silverCount=0;
-  let bronzeCount=0;
-
   for(var j=0;j<membership.length;j++){
     if(membership[j].name==='Gold'){
       goldCount++;
@@ -104,12 +99,22 @@ function showCart(){
     let input=document.createElement('input');
     input.min='1';
     input.type='number';
+    input.id='gCount';
     input.name='quantity';
     input.value=goldCount;
     dEl.appendChild(input);
     // dEl.textContent=goldCount;
+
+    let btn=document.createElement('button');
+    btn.id='goldbtn';
+    btn.type='submit';
+    btn.textContent='Update';
+    btn.addEventListener('click',updateMSQty);
+    dEl.appendChild(btn);
+
     trrEl.appendChild(dEl);
     var ddEl=document.createElement('td');
+    ddEl.id='goldTotal';
     ddEl.textContent='$'+55*goldCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
@@ -130,12 +135,25 @@ function showCart(){
     let input=document.createElement('input');
     input.min='1';
     input.type='number';
+    input.id='sCount';
     input.name='quantity';
     input.value=silverCount;
     dEl.appendChild(input);
     //dEl.textContent=silverCount;
+
+
+    //append update button for silver membership quantity
+    let btn=document.createElement('button');
+    btn.id='silverbtn';
+    btn.type='submit';
+    btn.textContent='Update';
+    btn.addEventListener('click',updateMSQty);
+    dEl.appendChild(btn);
+
+
     trrEl.appendChild(dEl);
     let ddEl=document.createElement('td');
+    ddEl.id='silverTotal';
     ddEl.textContent='$'+40*silverCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
@@ -158,13 +176,22 @@ function showCart(){
     let input=document.createElement('input');
     input.min='1';
     input.type='number';
+    input.id='bCount';
     input.name='quantity';
     input.value=bronzeCount;
     dEl.appendChild(input);
 
     // dEl.textContent=bronzeCount;
+    let btn=document.createElement('button');
+    btn.id='bronzebtn';
+    btn.type='submit';
+    btn.textContent='Update';
+    btn.addEventListener('click',updateMSQty);
+    dEl.appendChild(btn);
+
     trrEl.appendChild(dEl);
     let ddEl=document.createElement('td');
+    ddEl.id='BronzeTotal';
     ddEl.textContent='$'+25*bronzeCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
@@ -191,6 +218,107 @@ function updateQty(e){
   localStorage.setItem('productData',cartInfo);
   window.location.reload();
 }
+
+
+//update quantity for memberships
+function updateMSQty(e){
+  e.preventDefault();
+  console.log(e.target.id);
+  if(e.target.id==='goldbtn'){
+    var newqty=document.getElementById('gCount').value;
+
+    //clear all the tier objects named'gold'
+    for(let i=0;i<membership.length;i++){
+      if(membership[i].name==='Gold'){
+        membership.splice(i,1);
+        i--;
+      }
+    }
+    console.log(membership);
+    //genenrate new tier objects newqty times
+    for(let i=0;i<newqty;i++){
+      membership.push(new Tier('Gold', 55, '../membership/img/gold-member.png'));
+    }
+    //caculate total price
+    var newTotal=newqty*55;
+    //clear the total price div
+    var el=document.getElementById('goldTotal');
+    el.innerHTML='';
+    el.innerHTML='$'+newTotal;
+    //update the localstorage
+    var stringifyCartData = JSON.stringify(membership);
+    localStorage.setItem('membershipData', stringifyCartData);
+    //reload the page
+    window.location.reload();
+
+    // case 'silverbtn':
+  }
+
+  if(e.target.id==='silverbtn'){
+    var newqty2=document.getElementById('sCount').value;
+
+    //clear all the tier objects named'gold'
+    for(let i=0;i<membership.length;i++){
+      if(membership[i].name==='Silver'){
+        membership.splice(i,1);
+        i--;
+      }
+    }
+    console.log(membership);
+    //genenrate new tier objects newqty times
+    for(let i=0;i<newqty2;i++){
+      membership.push(new Tier('Silver', 40, '../membership/img/silver-membership.png'));
+    }
+    //caculate total price
+    var newTotal2=newqty2*40;
+    //clear the total price div
+    let el=document.getElementById('silverTotal');
+    el.innerHTML='';
+    el.innerHTML='$'+newTotal2;
+    //update the localstorage
+    var stringifyCartData2 = JSON.stringify(membership);
+    localStorage.setItem('membershipData', stringifyCartData2);
+    //reload the page
+    window.location.reload();
+  }
+
+
+
+  // case 'bronzebtn':
+
+  if(e.target.id==='bronzebtn'){
+    var newqty3=document.getElementById('bCount').value;
+
+    //clear all the tier objects named'gold'
+    for(let i=0;i<membership.length;i++){
+      if(membership[i].name==='Bronze'){
+        membership.splice(i,1);
+        i--;
+      }
+    }
+    //genenrate new tier objects newqty times
+    for(let i=0;i<newqty3;i++){
+      membership.push(new Tier('Bronze', 25, '../membership/img/bronze-member.png'));
+    }
+    //caculate total price
+    var newTotal3=newqty3*25;
+    //clear the total price div
+    let el=document.getElementById('BronzeTotal');
+    el.innerHTML='';
+    el.innerHTML='$'+newTotal3;
+    //update the localstorage
+    var stringifyCartData3 = JSON.stringify(membership);
+    localStorage.setItem('membershipData', stringifyCartData3);
+    //reload the page
+    window.location.reload();
+  }
+
+
+}
+
+
+
+
 
 
 renderCart();
