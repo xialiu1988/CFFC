@@ -3,10 +3,11 @@ var products = [];
 var cartItems = [];
 
 //product constructor
-function Product(name,src,price){
+function Product(name,src,price, displayName){
   this.name=name;
   this.src=src;
   this.price=price;
+  this.displayName = displayName;
   products.push(this);
 }
 //cart constructor
@@ -21,7 +22,7 @@ function checklocal(){
   if(rawData&&rawMember){
     for(let t=0;t<Object.values(rawData).length;t++){
       new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
-     }
+    }
     for(var l=0;l<rawData.length;l++){
       total+=Number(rawData[l].quantity);
     }
@@ -35,7 +36,7 @@ function checklocal(){
   else if(rawData!==null&&rawMember===null){
     for(let t=0;t<Object.values(rawData).length;t++){
       new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
-     }
+    }
     var main3=document.getElementById('counter');
     for(var ll=0;ll<rawData.length;ll++){
       total+=Number(rawData[ll].quantity);
@@ -169,12 +170,12 @@ function updateCartCounter(){
 }
 
 function createInstances(){
-  new Product('bag','../images/bag.jpg','$13.56');
-  new Product('cffc-tshirt','../images/cffcTshirt.png','$39.50');
-  new Product('cup','../images/cup.jpg','$21.00');
-  new Product('hoodie','../images/hoodie.png','$63.90');
-  new Product('soccer-boot','../images/soccer_boot.jpg','$83.00');
-  new Product('sticker','../images/sticker.jpg','$4.00');
+  new Product('bag','../images/bag.jpg','$13.56','CFFC Bag');
+  new Product('cffc-tshirt','../images/cffcTshirt.png','$39.50','CFFC Tshirt');
+  new Product('cup','../images/cup.jpg','$21.00','CFFC Cup');
+  new Product('hoodie','../images/hoodie.png','$63.90','CFFC Hoddie');
+  new Product('soccer-boot','../images/soccer_boot.jpg','$83.00','Soccer Boot');
+  new Product('sticker','../images/sticker.jpg','$4.00', 'CFFC Sticker');
 }
 
 createInstances();

@@ -22,7 +22,7 @@ function updateChartArrays(membershipData, productData){
   }
   if(productData !== null){
     for(var j=0; j<productData.length; j++){
-      productName[j] = productData[j].product.name;
+      productName[j] = productData[j].product.displayName;
       productQuantity[j] = productData[j].quantity;
       counter += Number(productData[j].quantity);
     }

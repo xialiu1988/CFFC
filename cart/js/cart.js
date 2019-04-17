@@ -7,8 +7,8 @@ var membership=[];
 function loadCart() {
   var rawData=JSON.parse(localStorage.getItem('productData'))|| [];
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
-  console.log(rawMember);
-  console.log(Object.entries(rawData)[0][1]);
+  //  console.log(rawMember);
+  //  console.log(Object.entries(rawData)[0][1]);
 
   for(let t=0;t<Object.values(rawData).length;t++){
     new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
@@ -34,7 +34,8 @@ function showCart(){
   for(var i=0;i<cart.cartItems.length;i++){
     var trEl=document.createElement('tr');
     var thEl=document.createElement('th');
-    thEl.textContent=cart.cartItems[i].product.name;
+    thEl.textContent=cart.cartItems[i].product.displayName;
+    //console.log(cart.cartItems[i].product.displayName);
     trEl.appendChild(thEl);
     var imgtdEl=document.createElement('td');
     var imgEl=document.createElement('img');
@@ -86,7 +87,7 @@ function showCart(){
   if(goldCount>0){
     const trrEl=document.createElement('tr');
     var thhEl=document.createElement('th');
-    thhEl.textContent='GoldMemberShip';
+    thhEl.textContent='Gold Membership';
     trrEl.appendChild(thhEl);
 
     let imgtdEl=document.createElement('td');
@@ -103,7 +104,7 @@ function showCart(){
     input.name='quantity';
     input.value=goldCount;
     dEl.appendChild(input);
-    // dEl.textContent=goldCount;
+    dEl.textContent=goldCount;
 
     let btn=document.createElement('button');
     btn.id='goldbtn';
@@ -122,7 +123,7 @@ function showCart(){
   if(silverCount>0){
     const trrEl=document.createElement('tr');
     let thhEl=document.createElement('th');
-    thhEl.textContent='silverMemberShip';
+    thhEl.textContent='Silver Membership';
     trrEl.appendChild(thhEl);
 
     let imgtdEl=document.createElement('td');
@@ -162,7 +163,7 @@ function showCart(){
   if(bronzeCount>0){
     const trrEl=document.createElement('tr');
     let thhEl=document.createElement('th');
-    thhEl.textContent='BronzeMemberShip';
+    thhEl.textContent='Bronze Membership';
     trrEl.appendChild(thhEl);
 
     let imgtdEl=document.createElement('td');
