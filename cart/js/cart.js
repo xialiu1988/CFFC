@@ -20,6 +20,7 @@ function renderCart(){
   loadCart();
   clearCart();
   showCart();
+  caculateTotalPrice();
 }
 
 
@@ -90,15 +91,17 @@ function showCart(){
 
   //membershipData
 
-  for(var j=0;j<membership.length;j++){
-    if(membership[j].name==='Gold'){
-      goldCount++;
-    }
-    if(membership[j].name==='Silver'){
-      silverCount++;
-    }
-    if(membership[j].name==='Bronze'){
-      bronzeCount++;
+  if (membership) {
+    for(var j=0;j<membership.length;j++){
+      if(membership[j].name==='Gold'){
+        goldCount++;
+      }
+      if(membership[j].name==='Silver'){
+        silverCount++;
+      }
+      if(membership[j].name==='Bronze'){
+        bronzeCount++;
+      }
     }
   }
 
@@ -218,13 +221,21 @@ function showCart(){
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
   }
-  caculateTotalPrice();
 }
 
 //calculate total price for the whole cart times
 function caculateTotalPrice(){
-  var tlEl=document.getElementById('tlPrice');
-  tlEl.textContent='$'+cartTotal;
+  const tfootEl = document.getElementById('tlPrice');
+  const thEl = document.createElement('th');
+  const tdEl = document.createElement('td');
+  const thElAtt = document.createAttribute('colspan');
+  thElAtt.value = '3';
+  thEl.setAttributeNode(thElAtt);
+  thEl.textContent = 'Total:';
+  tfootEl.appendChild(thEl);
+
+  tdEl.textContent = `$ ${cartTotal}`;
+  tfootEl.appendChild(tdEl);
 }
 
 
@@ -247,9 +258,6 @@ function removeItem(e){
   //reload page
   window.location.reload();
 }
-
-
-
 
 function updateQty(e){
   e.preventDefault();
