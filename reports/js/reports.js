@@ -3,6 +3,8 @@ var membershipName = ['Gold', 'Silver', 'Bronze'];
 var membershipQuantity = [0,0,0];
 var productName = [];
 var productQuantity = [];
+var counterDOM = document.getElementById('counter');
+var counter = 0;
 
 function getLocalStorageData(){
   var membershipData = JSON.parse(localStorage.getItem('membershipData'));
@@ -11,16 +13,22 @@ function getLocalStorageData(){
 }
 
 function updateChartArrays(membershipData, productData){
-  for(var i=0; i<membershipData.length; i++){
-    membershipQuantity[membershipName.indexOf(membershipData[i].name)]++;
-    //console.log(membershipData[i].name + membershipName.indexOf(membershipData[i].name));
+  if(membershipData !== null){
+    for(var i=0; i<membershipData.length; i++){
+      membershipQuantity[membershipName.indexOf(membershipData[i].name)]++;
+    }
+    counter = membershipData.length;
+    drawMembershipChart();
   }
-  for(var j=0; j<productData.length; j++){
-    productName[j] = productData[j].name;
-    productQuantity[j] = productData[j].quantity;
+  if(productData !== null){
+    for(var j=0; j<productData.length; j++){
+      productName[j] = productData[j].product.name;
+      productQuantity[j] = productData[j].quantity;
+      counter += Number(productData[j].quantity);
+    }
+    drawProductChart();
   }
-  drawMembershipChart();
-  drawProductChart();
+  counterDOM.innerHTML = counter;
 }
 function drawMembershipChart() {  
   var canvas = document.getElementById('membership-chart');
@@ -85,5 +93,7 @@ function drawProductChart(){
     },
   });
 }
+
+
 
 getLocalStorageData();

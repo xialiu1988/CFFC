@@ -2,18 +2,13 @@
 var membershipLevelGold = document.getElementById('membershipLevelGold');
 var membershipLevelSilver = document.getElementById('membershipLevelSilver');
 var membershipLevelBronze = document.getElementById('membershipLevelBronze');
-
 var membershipLevel = [membershipLevelGold, membershipLevelSilver, membershipLevelBronze];
-
 var perkListGold = ['Free renewal for one year', 'No cover charge at our partner venues', '15% off any merchandise', 'Something'];
 var perkListSilver = ['Only $25 for first renewal', '$5 cover charge at our partner venues', '10% off any merchandise', 'Something'];
 var perkListBronze = ['Only $25 for first renewal', '$10 cover charge at our partner venues', '5% off any merchandise', 'Something'];
 var perkList=[perkListGold, perkListSilver, perkListBronze];
-
 var allTierCart =[]; //the array to handle the amount of membership a user puts in thier cart
-
 var allTier = []; //the array to handle the default amount of membership options
-
 
 var Tier = function(name, price, filepath){
   this.name = name;
@@ -62,7 +57,7 @@ function checklocal(){
   }
   else{
     var mainEl=document.getElementById('membershipCounter');
-    mainEl.innerHTML='';
+    mainEl.innerHTML= total;
   }
 }
 checklocal();
@@ -98,15 +93,12 @@ displayTier();
 function handleGoldDOM(){
   allTierCart.push(allTier[0]);
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
-  //var num1=allTierCart.length;
-  var num2=0;
+  var num2 =0;
   var rawData=JSON.parse(localStorage.getItem('productData'));
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   if(rawData&&rawMember){
-    console.log(rawData.length);
     for(var w=0;w<rawData.length;w++){
       num2+=Number(rawData[w].quantity);
-      console.log(num2);
     }
     var main=document.getElementById('membershipCounter');
     main.innerHTML='';
@@ -142,7 +134,6 @@ function handleSilverDOM(){
 function handleBronzeDOM(){
   allTierCart.push(allTier[2]);
   saveToLocalStorage(); //update local storage with the updated amount of memebership in the cart
-  //var num1=allTierCart.length;
   var num2=0;
   var rawData=JSON.parse(localStorage.getItem('productData'));
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
@@ -161,18 +152,9 @@ function handleBronzeDOM(){
   }
 }
 
-
-
 document.getElementById('button0').addEventListener('click', handleGoldDOM); // for the gold button event listener
 document.getElementById('button1').addEventListener('click', handleSilverDOM); // for the silver button event listener
 document.getElementById('button2').addEventListener('click', handleBronzeDOM); // for the bronze button event listener
-
-
-/*
-membershipLevel[0].lastChild.addEventListener('click', handleGoldDOM); // for the gold button event listener
-membershipLevel[1].lastChild.addEventListener('click', handleSilverDOM);// for the silver button event listener
-membershipLevel[2].lastChild.addEventListener('click', handleBronzeDOM); // for the bronze button event listener
-*/
 
 
 

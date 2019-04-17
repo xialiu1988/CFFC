@@ -22,7 +22,7 @@ nav li {
   margin-left: 25px;
 }
 
-header nav ul a {
+a {
   text-decoration: none;
   color: white;
 }
@@ -67,6 +67,14 @@ header nav ul a {
 
 .hero-image_container img {
   position: absolute;
+}
+
+.hero-image_container h1 {
+  position: absolute;
+  font-size: 215px;
+  opacity: .7;
+  margin-left: 615px;
+  margin-top: -18px
 }
 
 .hero-image img {
@@ -174,4 +182,9 @@ button {
   border-radius: 5px;
   background-color: #d13327;
   color: #fff;
+}
+
+.navigation-button {
+  margin-top: 25px;
+  text-align: center;
 }

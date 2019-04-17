@@ -76,7 +76,6 @@ function showCart(){
   let silverCount=0;
   let bronzeCount=0;
 
-
   for(var j=0;j<membership.length;j++){
     if(membership[j].name==='Gold'){
       goldCount++;

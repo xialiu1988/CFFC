@@ -44,7 +44,7 @@ function checklocal(){
   }
   else{
     var mainEl=document.getElementById('counter');
-    mainEl.innerHTML='';
+    mainEl.innerHTML=total;
   }
 }
 checklocal();
