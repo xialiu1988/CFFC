@@ -4,6 +4,7 @@ var mainEl=document.getElementById('cartData');
 var cartItems=[];
 var cart;
 var membership=[];
+//var membershipArr = [];
 function loadCart() {
   var rawData=JSON.parse(localStorage.getItem('productData'))|| [];
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
@@ -22,7 +23,7 @@ function renderCart(){
 
 
 function clearCart(){
-  //mainEl.innerHTML='';
+//mainEl.innerHTML='';
 }
 
 
@@ -32,7 +33,7 @@ var silverCount=0;
 var bronzeCount=0;
 //displace the cart table
 function showCart(){
-  //productData
+//productData
   for(var i=0;i<cart.cartItems.length;i++){
     var trEl=document.createElement('tr');
     var thEl=document.createElement('th');
@@ -143,7 +144,7 @@ function showCart(){
     newMemlink.setAttribute('style','color: red;');
     newMemlink.id='rmvGold';
     newMemlink.innerHTML='X';
-    newMemlink.addEventListener('click',removeMemItem); 
+    newMemlink.addEventListener('click',removeMemItem);
     rmvMemEl.appendChild(newMemlink);
     trrEl.appendChild(rmvMemEl);
 
@@ -268,26 +269,26 @@ function caculateTotalPrice(){
 //remove membership item
 function removeMemItem(e){
   e.preventDefault();
-  // var temp = 0;
+  var temp = 0;
   if(e.target.id === 'rmvGold'){
     for(var i=0; i<membership.length; i++){
-      if(membership[i].name === 'Gold'){
-        membership.splice(i, 1);
-        i--;
+      if(membership[i-temp].name === 'Gold'){
+        membership.splice(i-temp, 1);
+        temp++;
       }
     }
   }else if(e.target.id === 'rmvSilver'){
     for(var j=0; j<membership.length; j++){
-      if(membership[j].name === 'Silver'){
-        membership.splice(j, 1);
-        j--;
+      if(membership[j-temp].name === 'Silver'){
+        membership.splice(j-temp, 1);
+        temp++;
       }
     }
   }else if(e.target.id === 'rmvBronze'){
     for(var k=0; k<membership.length; k++){
-      if(membership[k].name === 'Bronze'){
-        membership.splice(k, 1);
-        k--;
+      if(membership[k-temp].name === 'Bronze'){
+        membership.splice(k-temp, 1);
+        temp++;
       }
     }
   }
@@ -423,10 +424,63 @@ function updateMSQty(e){
 var btnel=document.getElementById('purchase');
 btnel.addEventListener('click',function(e){
   e.preventDefault();
-  var like = window.confirm('Your total price is: $'+cartTotal);
+  var like = window.confirm('Your total price is: $'+cartTotal.toFixed(2));
   if(like===true){
+    if(localStorage.getItem('membershipData') !== null && localStorage.getItem('productData') !== null){
+      let membershipData = JSON.parse(localStorage.membershipData);
+      let productData = JSON.parse(localStorage.productData);
+      let oldMembershipData;
+      let oldProductData;
+
+      if(localStorage.getItem('membershipDataReport') !== null){
+        oldMembershipData = JSON.parse(localStorage.membershipDataReport);
+        for(let i =0; i<membershipData.length; i++){
+          oldMembershipData.push(membershipData[i]);
+        }
+      }else{
+        oldMembershipData = membershipData;
+      }
+      if(localStorage.getItem('productDataReport') !== null){
+        oldProductData = JSON.parse(localStorage.productDataReport);
+        for(var j =0; j<productData.length; j++){
+          oldProductData.push(productData[j]);
+        }
+      }else{
+        oldProductData = productData;
+      }
+      localStorage.membershipDataReport = JSON.stringify(oldMembershipData);
+      localStorage.productDataReport = JSON.stringify(oldProductData);
+    }else if(localStorage.getItem('membershipData') !== null && localStorage.getItem('productData') === null){
+      let membershipData = JSON.parse(localStorage.membershipData);
+      let oldMembershipData;
+      if(localStorage.getItem('membershipDataReport') !== null){
+        oldMembershipData = JSON.parse(localStorage.membershipDataReport);
+        for(let i =0; i<membershipData.length; i++){
+          oldMembershipData.push(membershipData[i]);
+        }
+      }else{
+        oldMembershipData = membershipData;
+      }
+      localStorage.membershipDataReport = JSON.stringify(oldMembershipData);
+    }else if(localStorage.getItem('membershipData') === null && localStorage.getItem('productData') !== null){
+      let productData = JSON.parse(localStorage.productData);
+      let oldProductData;
+
+      if(localStorage.getItem('productDataReport') !== null){
+        oldProductData = JSON.parse(localStorage.productDataReport);
+        for(let j =0; j<productData.length; j++){
+          oldProductData.push(productData[j]);
+        }
+      }else{
+        oldProductData = productData;
+      }
+      localStorage.productDataReport = JSON.stringify(oldProductData);
+    }
+
     location.reload();
-    localStorage.clear();
+    localStorage.removeItem('productData');
+    localStorage.removeItem('membershipData');
+
     alert('Thanks for shopping with us!');
   }
   else{
