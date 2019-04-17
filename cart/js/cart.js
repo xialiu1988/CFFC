@@ -210,7 +210,7 @@ function showCart(){
 }
 function caculateTotalPrice(){
   var tlEl=document.getElementById('tlPrice');
-  tlEl.textContent='Total: '+' '+'$'+cartTotal;
+  tlEl.textContent='$'+cartTotal;
  
  }
 function updateQty(e){
@@ -320,10 +320,6 @@ function updateMSQty(e){
   //reload the page
   window.location.reload();
 }
-
-
-
-
 
 
 renderCart();
