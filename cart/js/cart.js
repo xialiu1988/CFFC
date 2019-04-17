@@ -261,7 +261,7 @@ function caculateTotalPrice(){
   thEl.textContent = 'Total:';
   tfootEl.appendChild(thEl);
 
-  tdEl.textContent = `$ ${cartTotal}`;
+  tdEl.textContent = `$ ${cartTotal.toFixed(2)}`;
   tfootEl.appendChild(tdEl);
 }
 
@@ -369,7 +369,6 @@ function updateMSQty(e){
 
   if(e.target.id==='silverbtn'){
     var newqty2=document.getElementById('sCount').value;
-
     //clear all the tier objects named'gold'
     for(let i=0;i<membership.length;i++){
       if(membership[i].name==='Silver'){
@@ -377,7 +376,7 @@ function updateMSQty(e){
         i--;
       }
     }
-    console.log(membership);
+
     //genenrate new tier objects newqty times
     for(let i=0;i<newqty2;i++){
       membership.push(new Tier('Silver', 40, '../membership/img/silver-membership.png'));
@@ -391,10 +390,7 @@ function updateMSQty(e){
 
   }
 
-
-
   // case 'bronzebtn':
-
   if(e.target.id==='bronzebtn'){
     var newqty3=document.getElementById('bCount').value;
 
@@ -417,8 +413,6 @@ function updateMSQty(e){
     el.innerHTML='$'+newTotal3;
 
   }
-
-
   //update the localstorage
   var stringifyCartData3 = JSON.stringify(membership);
   localStorage.setItem('membershipData', stringifyCartData3);
