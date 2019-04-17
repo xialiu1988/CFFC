@@ -9,12 +9,19 @@ function Product(name,src,price){
   this.price=price;
   products.push(this);
 }
+//cart constructor
+function Cart(cartItems){
+  this.cartItems=cartItems;
+}
+
 var total=0;
 function checklocal(){
   var rawData=JSON.parse(localStorage.getItem('productData'));
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   if(rawData&&rawMember){
-    cartItems=rawData;
+    for(let t=0;t<Object.values(rawData).length;t++){
+      new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
+     }
     for(var l=0;l<rawData.length;l++){
       total+=Number(rawData[l].quantity);
     }
@@ -26,7 +33,9 @@ function checklocal(){
     main2.innerHTML=Number(rawMember.length);
   }
   else if(rawData!==null&&rawMember===null){
-    cartItems=rawData;
+    for(let t=0;t<Object.values(rawData).length;t++){
+      new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
+     }
     var main3=document.getElementById('counter');
     for(var ll=0;ll<rawData.length;ll++){
       total+=Number(rawData[ll].quantity);
@@ -39,7 +48,8 @@ function checklocal(){
   }
 }
 checklocal();
-
+//create a new cart
+var cart=new Cart(cartItems);
 //display all the products on the products.html page
 function render(){
   let mainEl = document.getElementById('product-container');
@@ -79,10 +89,6 @@ function render(){
     divEl.appendChild(formEl);
   }
 }
-//cart constructor
-function Cart(cartItems){
-  this.cartItems=cartItems;
-}
 
 //cartItem constructor
 function CartItem(product,quantity){
@@ -114,14 +120,13 @@ Cart.prototype.addItem=function(product,quantity){
 //cart function-- remove one item from cart
 //cart function--save to localstorage
 Cart.prototype.savetoLocalstorage=function(){
-  var cartInfo=JSON.stringify(this.cartItems);
+  var cartInfo=JSON.stringify(cartItems);
   localStorage.setItem('productData',cartInfo);
 };
 
 
 
-//create a new cart
-var cart=new Cart(cartItems);
+
 function addtoCart(event){
   event.preventDefault();
   addSelectedItemtoCart();
@@ -146,6 +151,7 @@ function updateCartCounter(){
   //clear the div, then append the latest counter number in there
   divEl.innerHTML='';
   var rawData=JSON.parse(localStorage.getItem('productData'));
+  console.log(rawData);
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   var total=0;
   if(rawData&&rawMember){
