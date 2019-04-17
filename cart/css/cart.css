@@ -4,7 +4,7 @@
 }
 
 table {
-  margin: 50px 0;
+  margin: 25px 0;
 }
 
 tbody {
@@ -12,8 +12,7 @@ tbody {
 }
 
 tbody th, tbody td {
-  padding-right: 75px;
-  padding-left: 75px;
+  padding: 0 25px;
 }
 
 /*https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css*/
@@ -48,4 +47,8 @@ tfoot th {
 
 tfoot td {
   text-align: center;
+}
+
+#purchase {
+  float: right;
 }

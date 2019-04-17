@@ -438,7 +438,6 @@ btnel.addEventListener('click',function(e){
   else{
     localStorage.reload();
   }
-
 });
 
 
