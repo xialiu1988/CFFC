@@ -367,5 +367,24 @@ function updateMSQty(e){
   window.location.reload();
 }
 
+var btnel=document.getElementById('purchase');
+btnel.addEventListener('click',function(e){
+  e.preventDefault();
+  var like = window.confirm('Your total price is: $'+cartTotal);
+  if(like===true){
+    location.reload();
+    localStorage.clear();
+    alert('Thanks for shopping with us!');
+  }
+  else{
+    localStorage.clear();
+  }
+
+});
+
+
+
+
+
 
 renderCart();
