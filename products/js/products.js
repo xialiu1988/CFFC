@@ -180,3 +180,85 @@ function createInstances(){
 
 createInstances();
 render();
+
+//helper function to check if the product contains the letters from user input
+//return true if it can find product contains search information
+var boo=false;
+function checkStock(search){
+  for(let i=0;i<products.length;i++){
+    if(products[i].name.indexOf(search)>-1){
+      boo=true;
+    }
+    console.log(products[i].name);
+  }
+  return boo;
+}
+
+var btnEl=document.getElementById('site-search');
+btnEl.addEventListener('submit',searchTheSite);
+function searchTheSite(e){
+  e.preventDefault();
+  var searchEl=e.target.name;
+  var userinput=searchEl.value;
+  var dt=userinput.toLowerCase();
+  // console.log(dt);
+
+  if(checkStock(dt)){
+    var contextEl = document.getElementById('product-container');
+    contextEl.innerHTML='';
+
+    let mainEl = document.getElementById('product-container');
+    let divEl;
+    for (let i = 0; i < products.length; i++) {
+
+      if(products[i].name.indexOf(dt)>-1){
+        divEl = document.createElement('div');
+        divEl.className = products[i].name;
+        mainEl.appendChild(divEl);
+        let imgEl=document.createElement('img');
+        imgEl.name=products[i].name;
+        imgEl.src=products[i].src;
+
+        let pEl=document.createElement('p');
+        pEl.textContent=products[i].price;
+
+        let formEl=document.createElement('form');
+        let labelEl=document.createElement('label');
+        labelEl.textContent='Qty: ';
+        let input=document.createElement('input');
+        input.min='1';
+        input.type='number';
+        input.name='quantity';
+        input.id='quantity'+products[i].name;
+        input.value='1';
+        let buttonEl=document.createElement('button');
+        buttonEl.type='submit';
+        buttonEl.textContent='Add To Cart';
+        buttonEl.id=products[i].name;
+        buttonEl.addEventListener('click',addtoCart);
+        formEl.appendChild(labelEl);
+        formEl.appendChild(input);
+        formEl.appendChild(buttonEl);
+        divEl.appendChild(imgEl);
+        divEl.appendChild(pEl);
+        divEl.appendChild(formEl);
+      }
+
+      boo=false;
+
+    }
+  }
+
+  if (checkStock(dt) !== true){
+    console.log('im running');
+    var context = document.getElementById('product-container');
+    context.innerHTML='';
+    var paragraghEL=document.createElement('p');
+    paragraghEL.textContent='Sorry , we can\'t find'+' '+userinput;
+    context.appendChild(paragraghEL);
+
+  }
+}
+
+
+
