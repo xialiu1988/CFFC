@@ -14,7 +14,7 @@ var eventInfo = [
   'The Kent Chapter for Code Fellows Football Club is located at Kent Soccer Park. We were founded on Jan 1 2009. Our motto is to have a group that can pass the CFFC way of life to soming generations. Our captain Williams Osunkwo has been a member of the club for five years and always makes sure the supporters have greatest experiences during gamedays. He has even developed a supporters team who play soccer every Saturdays at Kent Soccer Park. Our venue partner Everything Sports and more pub is where we are on gamedays.',
   'The Redmond Chapter for Code Fellows Football Club is located at Red and Mond sporting complex. We were established on Jan 1 2009. Our captain David Marchante built this chapter from ground up and still goinf stong. We collaborated with our venue partner We Live Soccer sports bar and club to make sure we can see every CFCC games live. We are heavily involved in our community as well through Lets Clean and play event, where community members and our support group members play soccer every week and afterwards cleanup the community'];
 
-var emailInfo = ['chapterone@CSSFontFaceRule.com', 'chaptertwo@CSSFontFaceRule.com', 'chapterthree@CSSFontFaceRule.com'];
+var emailInfo = ['chapterone@cffcsupport.com', 'chaptertwo@cffcsupport.com', 'chapterthree@cffcsupport.com'];
 
 var allChapters=[];
 var arrayChapterNames=['Seattle Chapter', 'Kent Chapter', 'Redmond Chapter'];
