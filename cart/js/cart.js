@@ -26,6 +26,10 @@ function renderCart(){
 function clearCart(){
   //mainEl.innerHTML='';
 }
+
+
+var cartTotal=0;
+
 var goldCount=0;
 var silverCount=0;
 var bronzeCount=0;
@@ -66,6 +70,8 @@ function showCart(){
     var tddEl=document.createElement('td');
     tddEl.id='total'+cart.cartItems[i].product.name;
     tddEl.textContent='$'+totalPrice;
+    cartTotal+=totalPrice;
+    console.log(cartTotal);
     trEl.appendChild(tddEl);
     mainEl.appendChild(trEl);
   }
@@ -117,6 +123,7 @@ function showCart(){
     var ddEl=document.createElement('td');
     ddEl.id='goldTotal';
     ddEl.textContent='$'+55*goldCount;
+    cartTotal+=55*goldCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
   }
@@ -156,6 +163,7 @@ function showCart(){
     let ddEl=document.createElement('td');
     ddEl.id='silverTotal';
     ddEl.textContent='$'+40*silverCount;
+    cartTotal+=40*silverCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
   }
@@ -194,11 +202,17 @@ function showCart(){
     let ddEl=document.createElement('td');
     ddEl.id='BronzeTotal';
     ddEl.textContent='$'+25*bronzeCount;
+    cartTotal+=25*bronzeCount;
     trrEl.appendChild(ddEl);
     mainEl.appendChild(trrEl);
   }
-
+  caculateTotalPrice();
 }
+function caculateTotalPrice(){
+  var tlEl=document.getElementById('tlPrice');
+  tlEl.textContent='Total: '+' '+'$'+cartTotal;
+ 
+ }
 function updateQty(e){
   e.preventDefault();
   let names=[];
@@ -246,13 +260,6 @@ function updateMSQty(e){
     var el=document.getElementById('goldTotal');
     el.innerHTML='';
     el.innerHTML='$'+newTotal;
-    //update the localstorage
-    var stringifyCartData = JSON.stringify(membership);
-    localStorage.setItem('membershipData', stringifyCartData);
-    //reload the page
-    window.location.reload();
-
-    // case 'silverbtn':
   }
 
   if(e.target.id==='silverbtn'){
@@ -276,11 +283,7 @@ function updateMSQty(e){
     let el=document.getElementById('silverTotal');
     el.innerHTML='';
     el.innerHTML='$'+newTotal2;
-    //update the localstorage
-    var stringifyCartData2 = JSON.stringify(membership);
-    localStorage.setItem('membershipData', stringifyCartData2);
-    //reload the page
-    window.location.reload();
+
   }
 
 
@@ -307,14 +310,15 @@ function updateMSQty(e){
     let el=document.getElementById('BronzeTotal');
     el.innerHTML='';
     el.innerHTML='$'+newTotal3;
-    //update the localstorage
-    var stringifyCartData3 = JSON.stringify(membership);
-    localStorage.setItem('membershipData', stringifyCartData3);
-    //reload the page
-    window.location.reload();
+
   }
 
 
+  //update the localstorage
+  var stringifyCartData3 = JSON.stringify(membership);
+  localStorage.setItem('membershipData', stringifyCartData3);
+  //reload the page
+  window.location.reload();
 }
 
 
