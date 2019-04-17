@@ -383,8 +383,4 @@ btnel.addEventListener('click',function(e){
 });
 
 
-
-
-
-
 renderCart();
