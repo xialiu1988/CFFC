@@ -30,10 +30,10 @@ function clearCart(){
 
 
 var cartTotal=0;
-
 var goldCount=0;
 var silverCount=0;
 var bronzeCount=0;
+//displace the cart table
 function showCart(){
   //productData
   for(var i=0;i<cart.cartItems.length;i++){
@@ -74,6 +74,18 @@ function showCart(){
     cartTotal+=totalPrice;
     console.log(cartTotal);
     trEl.appendChild(tddEl);
+
+    var rmvEl=document.createElement('td');
+
+    var newlink=document.createElement('a');
+    newlink.setAttribute('href','');
+    newlink.setAttribute('style','color: black;');
+    newlink.id='rmv'+cart.cartItems[i].product.name;
+    newlink.innerHTML='X';
+    newlink.addEventListener('click',removeItem);
+    rmvEl.appendChild(newlink);
+
+    trEl.appendChild(rmvEl);
     mainEl.appendChild(trEl);
   }
 
@@ -113,7 +125,7 @@ function showCart(){
     input.name='quantity';
     input.value=goldCount;
     dEl.appendChild(input);
-    dEl.textContent=goldCount;
+    //dEl.textContent=goldCount;
 
     let btn=document.createElement('button');
     btn.id='goldbtn';
@@ -210,6 +222,8 @@ function showCart(){
     mainEl.appendChild(trrEl);
   }
 }
+
+//calculate total price for the whole cart times
 function caculateTotalPrice(){
   const tfootEl = document.getElementById('tlPrice');
   const thEl = document.createElement('th');
@@ -223,6 +237,28 @@ function caculateTotalPrice(){
   tdEl.textContent = `$ ${cartTotal}`;
   tfootEl.appendChild(tdEl);
 }
+
+
+//remove cart Item
+function removeItem(e){
+  e.preventDefault();
+  console.log(e.target.id);
+  let newid=e.target.id.slice(3);
+  console.log(newid);
+
+  let names=[];
+  for(let i=0;i<cart.cartItems.length;i++){
+    names.push(cart.cartItems[i].product.name);
+  }
+  let idx=names.indexOf(newid);
+  cart.cartItems.splice(idx,1);
+  // update localstorage
+  var cartInfo=JSON.stringify(cartItems);
+  localStorage.setItem('productData',cartInfo);
+  //reload page
+  window.location.reload();
+}
+
 function updateQty(e){
   e.preventDefault();
   let names=[];
