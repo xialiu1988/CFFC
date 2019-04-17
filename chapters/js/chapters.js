@@ -18,7 +18,7 @@ var eventInfo = [
 var emailInfo = ['chapterone@CSSFontFaceRule.com', 'chaptertwo@CSSFontFaceRule.com', 'chapterthree@CSSFontFaceRule.com'];
 
 var allChapters=[];
-var arrayChapterNames=['Chapter 1', 'Chapter 2', 'Chapter 3'];
+var arrayChapterNames=['Seattle Chapter', 'Kent Chapter', 'Redmond Chapter'];
 var counterDOM = document.getElementById('counter');
 var counter = 0;
 

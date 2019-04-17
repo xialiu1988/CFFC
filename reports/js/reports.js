@@ -7,8 +7,8 @@ var counterDOM = document.getElementById('counter');
 var counter = 0;
 
 function getLocalStorageData(){
-  var membershipData = JSON.parse(localStorage.getItem('membershipData'));
-  var productData = JSON.parse(localStorage.getItem('productData'));
+  var membershipData = JSON.parse(localStorage.getItem('membershipDataReport'));
+  var productData = JSON.parse(localStorage.getItem('productDataReport'));
   updateChartArrays(membershipData, productData);
 }
 
@@ -17,18 +17,15 @@ function updateChartArrays(membershipData, productData){
     for(var i=0; i<membershipData.length; i++){
       membershipQuantity[membershipName.indexOf(membershipData[i].name)]++;
     }
-    counter = membershipData.length;
     drawMembershipChart();
   }
   if(productData !== null){
     for(var j=0; j<productData.length; j++){
       productName[j] = productData[j].product.displayName;
       productQuantity[j] = productData[j].quantity;
-      counter += Number(productData[j].quantity);
     }
     drawProductChart();
   }
-  counterDOM.innerHTML = counter;
 }
 function drawMembershipChart() {  
   var canvas = document.getElementById('membership-chart');
@@ -94,6 +91,19 @@ function drawProductChart(){
   });
 }
 
+function showCart(){
+  var membershipData = JSON.parse(localStorage.getItem('membershipData'));
+  var productData = JSON.parse(localStorage.getItem('productData'));
+  if(membershipData !== null){
+    counter = membershipData.length;
+  }
+  if(productData !== null){
+    for(var i=0; i<productData.length; i++){
+      counter+= Number(productData[i].quantity);
+    }
+  }
+  counterDOM.innerHTML = counter;
+}
 
-
+showCart();
 getLocalStorageData();

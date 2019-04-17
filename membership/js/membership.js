@@ -34,7 +34,6 @@ function generateTier(){
 //get data from localstorage
 var total=0;
 function checklocal(){
-  console.log('i got in here');
   var rawData=JSON.parse(localStorage.getItem('productData'));
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
   if(rawData&&rawMember){
