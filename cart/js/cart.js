@@ -7,9 +7,6 @@ var membership=[];
 function loadCart() {
   var rawData=JSON.parse(localStorage.getItem('productData'))|| [];
   var rawMember=JSON.parse(localStorage.getItem('membershipData'));
-  //  console.log(rawMember);
-  //  console.log(Object.entries(rawData)[0][1]);
-
   for(let t=0;t<Object.values(rawData).length;t++){
     new CartItem(Object.values(rawData)[t].product,Object.values(rawData)[t].quantity);
   }
@@ -78,7 +75,7 @@ function showCart(){
 
     var newlink=document.createElement('a');
     newlink.setAttribute('href','');
-    newlink.setAttribute('style','color: black;');
+    newlink.setAttribute('style','color: red;');
     newlink.id='rmv'+cart.cartItems[i].product.name;
     newlink.innerHTML='X';
     newlink.addEventListener('click',removeItem);
@@ -91,6 +88,7 @@ function showCart(){
   //membershipData
 
   for(var j=0;j<membership.length;j++){
+    console.log('this is membership data'+ membership[j]);
     if(membership[j].name==='Gold'){
       goldCount++;
     }
@@ -137,6 +135,18 @@ function showCart(){
     ddEl.textContent='$'+55*goldCount;
     cartTotal+=55*goldCount;
     trrEl.appendChild(ddEl);
+
+    // code to add the remove link on the cart page for the membership products
+    let rmvMemEl=document.createElement('td');
+    let newMemlink=document.createElement('a');
+    newMemlink.setAttribute('href','');
+    newMemlink.setAttribute('style','color: red;');
+    newMemlink.id='rmvGold';
+    newMemlink.innerHTML='X';
+    newMemlink.addEventListener('click',removeMemItem); 
+    rmvMemEl.appendChild(newMemlink);
+    trrEl.appendChild(rmvMemEl);
+
     mainEl.appendChild(trrEl);
   }
   if(silverCount>0){
@@ -161,7 +171,6 @@ function showCart(){
     dEl.appendChild(input);
     //dEl.textContent=silverCount;
 
-
     //append update button for silver membership quantity
     let btn=document.createElement('button');
     btn.id='silverbtn';
@@ -170,13 +179,23 @@ function showCart(){
     btn.addEventListener('click',updateMSQty);
     dEl.appendChild(btn);
 
-
     trrEl.appendChild(dEl);
     let ddEl=document.createElement('td');
     ddEl.id='silverTotal';
     ddEl.textContent='$'+40*silverCount;
     cartTotal+=40*silverCount;
     trrEl.appendChild(ddEl);
+
+    // code to add the remove link on the cart page for the membership products
+    let rmvMemEl=document.createElement('td');
+    let newMemlink=document.createElement('a');
+    newMemlink.setAttribute('href','');
+    newMemlink.setAttribute('style','color: red;');
+    newMemlink.id='rmvSilver';
+    newMemlink.innerHTML='X';
+    newMemlink.addEventListener('click',removeMemItem);
+    rmvMemEl.appendChild(newMemlink);
+    trrEl.appendChild(rmvMemEl);
     mainEl.appendChild(trrEl);
   }
 
@@ -216,6 +235,17 @@ function showCart(){
     ddEl.textContent='$'+25*bronzeCount;
     cartTotal+=25*bronzeCount;
     trrEl.appendChild(ddEl);
+
+    // code to add the remove link on the cart page for the membership products
+    let rmvMemEl=document.createElement('td');
+    let newMemlink=document.createElement('a');
+    newMemlink.setAttribute('href','');
+    newMemlink.setAttribute('style','color: red;');
+    newMemlink.id='rmvBronze';
+    newMemlink.innerHTML='X';
+    newMemlink.addEventListener('click',removeMemItem);
+    rmvMemEl.appendChild(newMemlink);
+    trrEl.appendChild(rmvMemEl);
     mainEl.appendChild(trrEl);
   }
   caculateTotalPrice();
@@ -224,9 +254,41 @@ function showCart(){
 //calculate total price for the whole cart times
 function caculateTotalPrice(){
   var tlEl=document.getElementById('tlPrice');
-  tlEl.textContent='$'+cartTotal;
+  tlEl.textContent='$'+cartTotal.toFixed(2);
 }
 
+//remove membership item
+function removeMemItem(e){
+  e.preventDefault();
+  var temp = 0;
+  if(e.target.id === 'rmvGold'){
+    for(var i=0; i<membership.length; i++){
+      if(membership[i-temp].name === 'Gold'){
+        membership.splice(i-temp, 1);
+        temp++;
+      }
+    }
+  }else if(e.target.id === 'rmvSilver'){
+    for(var j=0; j<membership.length; j++){
+      if(membership[j-temp].name === 'Silver'){
+        membership.splice(j-temp, 1);
+        temp++;
+      }
+    }
+  }else if(e.target.id === 'rmvBronze'){
+    for(var k=0; k<membership.length; k++){
+      if(membership[k-temp].name === 'Bronze'){
+        membership.splice(k-temp, 1);
+        temp++;
+      }
+    }
+  }
+  // update localstorage
+  var membershipInfo=JSON.stringify(membership);
+  localStorage.setItem('membershipData',membershipInfo);
+  //reload page
+  window.location.reload();
+}
 
 //remove cart Item
 function removeItem(e){
