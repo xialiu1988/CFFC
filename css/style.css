@@ -100,19 +100,23 @@ a {
 
 .chapter-container h2, .event-container h2 {
   text-align: center;
-  margin-top: 25px;
+  /* margin-top: 25px; */
 }
 
 .chapter-container h2 {
-  font-size: 18px;
+  font-size: 20px;
   position: absolute;
-  margin-top: 60px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .chapter-container p, .event-container p {
+  margin-top: 50px;
   width: 300px;
   text-align: justify;
+}
+
+.event-container p{
+  margin-top: 20px;
 }
 
 footer {
@@ -140,12 +144,11 @@ footer {
 /* end of sticky footer code */
 
 .shield {
-  width: 150px;
-  height: 150px;
-  border-radius: 150px;
+  width: 170px;
+  height: 170px;
+  border-radius: 170px;
   margin: 0 auto;
-  background-color: gray;
-  margin-top: 25px;
+  /* margin-top: 25px; */
 }
 
 .active {
@@ -187,4 +190,11 @@ button {
 .navigation-button {
   margin-top: 25px;
   text-align: center;
+}
+
+.shield-image{
+  width: 170px;
+  height: 170px;
+  margin-top: -10px;
+  /* margin-bottom: -10px; */
 }
