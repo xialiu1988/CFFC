@@ -88,19 +88,20 @@ function showCart(){
   }
 
   //membershipData
-  for(var j=0;j<membership.length;j++){
-    console.log('this is membership data'+ membership[j]);
-    if(membership[j].name==='Gold'){
-      goldCount++;
-    }
-    if(membership[j].name==='Silver'){
-      silverCount++;
-    }
-    if(membership[j].name==='Bronze'){
-      bronzeCount++;
+  if(membership){
+    for(var j=0;j<membership.length;j++){
+      console.log('this is membership data'+ membership[j]);
+      if(membership[j].name==='Gold'){
+        goldCount++;
+      }
+      if(membership[j].name==='Silver'){
+        silverCount++;
+      }
+      if(membership[j].name==='Bronze'){
+        bronzeCount++;
+      }
     }
   }
-
   if(goldCount>0){
     const trrEl=document.createElement('tr');
     var thhEl=document.createElement('th');
