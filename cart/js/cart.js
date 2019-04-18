@@ -269,26 +269,25 @@ function caculateTotalPrice(){
 //remove membership item
 function removeMemItem(e){
   e.preventDefault();
-  // var temp = 0;
   if(e.target.id === 'rmvGold'){
     for(var i=0; i<membership.length; i++){
       if(membership[i].name === 'Gold'){
         membership.splice(i, 1);
-       i--;
+        i--;
       }
     }
   }else if(e.target.id === 'rmvSilver'){
     for(var j=0; j<membership.length; j++){
       if(membership[j].name === 'Silver'){
         membership.splice(j, 1);
-       j--;
+        j--;
       }
     }
   }else if(e.target.id === 'rmvBronze'){
     for(var k=0; k<membership.length; k++){
       if(membership[k].name === 'Bronze'){
         membership.splice(k, 1);
-  k--;
+        k--;
       }
     }
   }
